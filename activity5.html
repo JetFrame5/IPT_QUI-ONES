@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>act</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: grid;
+        grid-template-areas:
+          "MDAS"
+          "FONT";
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        background-color: whitesmoke;
+      }
+      button {
+        padding: 0.5rem;
+        font-weight: bolder;
+        transition: 0.3s ease-in-out;
+      }
+      button:hover {
+        scale: 1.1;
+      }
+      main {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        flex-direction: column;
+        padding: 5rem;
+      }
+      .top {
+        grid-area: MDAS;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .number-cont {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        input[type="number"] {
+          height: 2rem;
+          padding: 1rem;
+          width: 9rem;
+        }
+      }
+      .bot {
+        grid-area: FONT;
+        .paragraph {
+          font-size: 16px;
+        }
+      }
+      .button-cont {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="top">
+      <h1>MDAS</h1>
+      <div class="container">
+        <div class="number-cont">
+          <label for="num1">Number 1: </label>
+          <input type="number" id="num1" />
+        </div>
+        <div class="number-cont">
+          <label for="num2">Number 2: </label>
+          <input type="number" id="num2" />
+        </div>
+        <div class="number-cont">
+          <label for="num3">Number 3: </label>
+          <input type="number" id="num3" />
+        </div>
+        <div class="number-cont">
+          <label for="num4">Number 4: </label>
+          <input type="number" id="num4" />
+        </div>
+        <div class="number-cont">
+          <label for="num5">Number 5: </label>
+          <input type="number" id="num5" />
+        </div>
+      </div>
+      <i>Formula is : (num1 * num2) / num3 + num4 - num5</i>
+
+      <button onclick="calculate()">Calculate</button>
+    </main>
+    <main class="bot">
+      <h1>FONTSIZE</h1>
+      <div class="container">
+        <p id="paragraph"></p>
+        <div class="button-cont">
+          <button onclick="increase()">Increase</button>
+          <button onclick="decrease()">Decrease</button>
+        </div>
+      </div>
+    </main>
+    <script>
+      const num1 = document.getElementById("num1");
+      const num2 = document.getElementById("num2");
+      const num3 = document.getElementById("num3");
+      const num4 = document.getElementById("num4");
+      const num5 = document.getElementById("num5");
+      const paragraph = document.getElementById("paragraph");
+
+      function calculate() {
+        const val1 = parseFloat(num1.value);
+        const val2 = parseFloat(num2.value);
+        const val3 = parseFloat(num3.value);
+        const val4 = parseFloat(num4.value);
+        const val5 = parseFloat(num5.value);
+
+        const result = (val1 * val2) / val3 + val4 - val5;
+        paragraph.innerHTML = `Result: ${result}`;
+      }
+
+      let fontSize = 16;
+
+      function increase() {
+        fontSize += 1;
+        paragraph.style.fontSize = fontSize + "px";
+      }
+
+      function decrease() {
+        fontSize = Math.max(1, fontSize - 1);
+        paragraph.style.fontSize = fontSize + "px";
+      }
+    </script>
+  </body>
+</html>
